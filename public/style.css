@@ -1,0 +1,147 @@
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --text: #1c1b18;
+  --muted: #6b6860;
+  --border: #e3e0d8;
+  --accent: #1f7a4d;
+  --accent-text: #ffffff;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151513;
+    --surface: #1f1e1b;
+    --text: #f1efe9;
+    --muted: #a19d93;
+    --border: #34322d;
+    --accent: #3fae74;
+    --accent-text: #0d1a12;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.4 system-ui, sans-serif;
+}
+
+main {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+#presence,
+small,
+footer {
+  color: var(--muted);
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Without this, display: flex above would beat the hidden attribute. */
+[hidden] {
+  display: none;
+}
+
+input:not([type="checkbox"]) {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font: inherit;
+  font-weight: 600;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+label {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 0;
+}
+
+label span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+/* Someone will be "WWWWWWWWWWWWWWWWWWWWWWWW". Don't let it squeeze the item text. */
+label small {
+  max-width: 35%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#presence {
+  overflow-wrap: anywhere;
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--accent);
+}
+
+li button {
+  background: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+}
+
+.done span {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+/* Projector: same page, bigger type for the back of the room. */
+@media (min-width: 1100px) {
+  body {
+    font-size: 24px;
+  }
+  main {
+    max-width: 44rem;
+  }
+}

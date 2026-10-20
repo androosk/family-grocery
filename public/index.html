@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Family Grocery List</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1 id="family"></h1>
+      <p id="presence">Pick a name to join</p>
+
+      <form id="join" hidden>
+        <input id="name" placeholder="Your name" maxlength="24" autocomplete="nickname" required />
+        <button>Join</button>
+      </form>
+
+      <form id="add" hidden>
+        <input id="item" placeholder="Add an item…" maxlength="80" autocomplete="off" required />
+        <button>Add</button>
+      </form>
+
+      <ul id="items"></ul>
+
+      <footer>Join at <strong id="join-url"></strong></footer>
+    </main>
+  </body>
+</html>
