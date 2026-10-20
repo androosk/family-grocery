@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "family-grocery",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    // Any path like /utahjs serves index.html; only /api/* reaches the Worker first.
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "GROCERY_LIST", "class_name": "GroceryList" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GroceryList"] }],
+  "observability": { "enabled": true }
+}
