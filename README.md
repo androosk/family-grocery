@@ -13,37 +13,28 @@ phone ──┘                                                 ├─ SQLite (t
                                                           └─ every connected socket
 ```
 
-- **One object per family.** `env.GROCERY_LIST.getByName(family)` routes every client, from anywhere, to the same instance. A new name means a new, empty list, with nothing to provision.
-- **State lives in the object.** Items are stored in the object's own SQLite database and survive restarts, evictions, and deploys.
-- **WebSocket Hibernation.** `ctx.acceptWebSocket()` keeps sockets open while the object sleeps between messages. Display names ride along in `serializeAttachment()`, and keepalive pings get an auto-response without waking the object.
-- **No diffing.** Each object runs one request at a time, so every change is applied in order and the full list is broadcast to everyone.
+- **One object per family.** `getByName(family)` routes every phone, from anywhere, to the same instance. A new name gets a new, empty list, with nothing to provision.
+- **State lives in the object.** Items are stored in the object's own SQLite database and survive restarts and deploys.
+- **WebSocket Hibernation.** `ctx.acceptWebSocket()` keeps phones connected while the object sleeps between messages. Each phone's display name rides along via `serializeAttachment()`.
+- **No diffing.** Each object runs one request at a time, so after every change it broadcasts the whole list to everyone.
 
 | File | What's in it |
 |---|---|
-| `src/index.ts` | Worker: routes `/api/lists/:family/ws` to the right object |
+| `src/index.ts` | Worker: routes `/api/lists/:family/ws` to that family's object |
 | `src/grocery-list.ts` | The Durable Object: SQLite, WebSockets, broadcast |
-| `src/protocol.ts` | Zod schemas for every client message, plus limits |
-| `public/` | Plain HTML/CSS/JS client (`// @ts-check`, no build step) |
-
-Guardrails for a room full of developers:
-
-- Every client message is validated with Zod.
-- Items max out at 80 characters, names at 24, and the list at 100 items.
-- The client renders text with `textContent` only. A test fails if `innerHTML` ever shows up.
+| `public/` | Plain HTML/CSS/JS client, no build step |
 
 ## Commands
 
 ```sh
 npm install
 npm run dev        # http://localhost:8787/utahjs
-npm test           # Vitest inside workerd (@cloudflare/vitest-plugin)
-npm run typecheck  # Worker, client, and tests
-npm run deploy     # needs `npx wrangler login` first
+npm run deploy     # run `npx wrangler login` once first
 ```
 
 After the event, `npx wrangler delete` removes the Worker and its data.
 
 ## Demo moments
 
-- **New object on demand.** Change the URL from `/utahjs` to `/anything-else` and you get a separate list instantly.
-- **Memory survives a deploy.** Run `npm run deploy` mid-talk. Phones drop, reconnect on their own, and the list is still there.
+- **New object on demand.** Change `/utahjs` in the URL to `/anything-else` and you get a separate list instantly.
+- **Memory survives a deploy.** Run `npm run deploy` mid-talk. Phones drop, reconnect a second later, and the list is still there.

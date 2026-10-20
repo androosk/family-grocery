@@ -10,36 +10,22 @@
   </head>
   <body>
     <main>
-      <header>
-        <p class="eyebrow">Family grocery list</p>
-        <h1 id="family"></h1>
-        <p class="presence" aria-live="polite">
-          <span class="dot" aria-hidden="true"></span>
-          <span id="presence">Connecting…</span>
-        </p>
-      </header>
+      <h1 id="family"></h1>
+      <p id="presence">Pick a name to join</p>
 
-      <form id="join" class="stack" hidden>
-        <label for="name">What should the family call you?</label>
-        <div class="row">
-          <input id="name" maxlength="24" autocomplete="nickname" required />
-          <button>Join</button>
-        </div>
+      <form id="join" hidden>
+        <input id="name" placeholder="Your name" maxlength="24" autocomplete="nickname" required />
+        <button>Join</button>
       </form>
 
-      <section id="list" hidden>
-        <form id="add" class="row">
-          <label for="item" class="visually-hidden">Add an item</label>
-          <input id="item" placeholder="Add an item…" maxlength="80" autocomplete="off" required />
-          <button>Add</button>
-        </form>
-        <p id="error" class="error" role="alert"></p>
-        <ul id="items"></ul>
-        <p id="empty" class="empty">Nothing on the list yet. Add something!</p>
-        <p class="me">You're <strong id="me"></strong> · <button id="rename" class="link" type="button">change</button></p>
-      </section>
+      <form id="add" hidden>
+        <input id="item" placeholder="Add an item…" maxlength="80" autocomplete="off" required />
+        <button>Add</button>
+      </form>
 
-      <footer>Join the family at <strong id="join-url"></strong></footer>
+      <ul id="items"></ul>
+
+      <footer>Join at <strong id="join-url"></strong></footer>
     </main>
   </body>
 </html>
