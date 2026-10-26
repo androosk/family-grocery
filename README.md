@@ -31,8 +31,7 @@ npm install
 npm run dev        # http://localhost:8787/utahjs
 npm run deploy     # run `npx wrangler login` once first
 ```
-
-After the event, `npx wrangler delete` removes the Worker and its data.
+Link to slide show here: [State for Serverless](https://docs.google.com/presentation/d/1XswLKlaeax_rlbx3M3d4bnVCesBBv37TgLXQocdcvlc/edit?usp=sharing)
 
 ## Demo moments
 
