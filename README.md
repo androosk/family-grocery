@@ -31,7 +31,7 @@ npm install
 npm run dev        # http://localhost:8787/utahjs
 npm run deploy     # run `npx wrangler login` once first
 ```
-Link to slide show here: [Memory for Serverless](https://docs.google.com/presentation/d/1XswLKlaeax_rlbx3M3d4bnVCesBBv37TgLXQocdcvlc/edit?usp=sharing)
+Link to slide show here: [Memory for Serverless]([https://docs.google.com/presentation/d/1XswLKlaeax_rlbx3M3d4bnVCesBBv37TgLXQocdcvlc/edit?usp=sharing](https://docs.google.com/presentation/d/e/2PACX-1vRhxY0O8xz30PdPlCX9Qz07e0g--23UTubyUa0F5wufLo0ff1UAhkIdQ0vVFnB6zEGBHu3UUdMht26X/pub?start=false&loop=false&delayms=3000))
 
 ## Demo moments
 
